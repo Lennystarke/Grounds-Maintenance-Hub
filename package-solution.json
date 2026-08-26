@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "grounds-maintenance-hub-client-side-solution",
+    "id": "949d969c-a8d6-44f1-8ec5-5ea0e5de7c53",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "Waverley",
+      "websiteUrl": "https://wavind.sharepoint.com/sites/Waverley",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": ""
+    },
+    "metadata": {
+      "shortDescription": {"default": "Grounds Maintenance scheduling, jobs, invoicing and reporting"},
+      "longDescription": {"default": "Grounds Maintenance Hub using GM Customers, GM Sites, GM Crews and GM Jobs SharePoint lists."},
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    }
+  },
+  "paths": {
+    "zippedPackage": "solution/grounds-maintenance-hub.sppkg"
+  }
+}
