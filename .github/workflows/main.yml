@@ -1,0 +1,33 @@
+name: Build SPFx Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build production bundle
+        run: npx heft build --production
+
+      - name: Package SharePoint solution
+        run: npx heft package-solution --production
+
+      - name: Upload SPPKG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grounds-maintenance-hub-sppkg
+          path: sharepoint/solution/*.sppkg
