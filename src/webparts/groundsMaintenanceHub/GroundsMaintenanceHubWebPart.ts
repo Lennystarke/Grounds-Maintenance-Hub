@@ -91,8 +91,14 @@ export default class GroundsMaintenanceHubWebPart extends BaseClientSideWebPart<
       }
     });
 
-    const rows = Object.entries(byCustomer).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,10);
-    const max = Math.max(1,...rows.map(r=>r[1]));
+    const rows: Array<[string, number]> = Object.keys(byCustomer)
+      .map((name: string): [string, number] => [name, byCustomer[name]])
+      .filter((row: [string, number]) => row[1] > 0)
+      .sort((a: [string, number], b: [string, number]) => b[1] - a[1])
+      .slice(0, 10);
+
+    const rowValues: number[] = rows.map((row: [string, number]) => row[1]);
+    const max = Math.max.apply(Math, [1].concat(rowValues));
 
     return `
       <h2>Dashboard</h2>
@@ -104,12 +110,12 @@ export default class GroundsMaintenanceHubWebPart extends BaseClientSideWebPart<
       </div>
       <div class="panel">
         <h3>Revenue by Customer</h3>
-        ${rows.length ? rows.map(([name,value]) => `
+        ${rows.length ? rows.map((row: [string, number]) => { const name: string = row[0]; const value: number = row[1]; return `
           <div class="chart-row">
             <div class="chart-label">${name}</div>
             <div class="chart-track"><div class="chart-fill" style="width:${Math.max(2,value/max*100)}%"></div></div>
             <div class="chart-value">${this.money(value)}</div>
-          </div>`).join('') : '<div class="empty">No revenue data yet</div>'}
+          </div>`; }).join('') : '<div class="empty">No revenue data yet</div>'}
       </div>`;
   }
 
@@ -117,8 +123,12 @@ export default class GroundsMaintenanceHubWebPart extends BaseClientSideWebPart<
     return `<div class="kpi"><div class="kpi-label">${label}</div><div class="kpi-value">${value}</div></div>`;
   }
 
+  private twoDigit(value: number): string {
+    return value < 10 ? `0${value}` : String(value);
+  }
+
   private iso(d:Date): string {
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    return `${d.getFullYear()}-${this.twoDigit(d.getMonth()+1)}-${this.twoDigit(d.getDate())}`;
   }
 
   private renderSchedule(): string {

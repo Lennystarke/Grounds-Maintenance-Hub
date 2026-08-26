@@ -128,7 +128,7 @@ export class SharePointService {
       defaultRate: Number(v(r,'Default Rate') || 0),
       poNumber: v(r,'PO Number') || '',
       monthlyContractValue: Number(v(r,'Monthly Contract Value') || 0)
-    })).filter(x => x.active);
+    })).filter((x: ISite) => x.active);
   }
 
   public async getSites(): Promise<ISite[]> {
