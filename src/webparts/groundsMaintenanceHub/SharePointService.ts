@@ -166,7 +166,7 @@ export class SharePointService {
       siteContact: v(r,'Site Contact') || '',
       phone: v(r,'Phone') || '',
       active: v(r,'Active') !== false
-    })).filter(x => x.active);
+    })).filter((x: ISite) => x.active);
   }
 
   public async getCrews(): Promise<ICrew[]> {
@@ -179,7 +179,7 @@ export class SharePointService {
       id: r.Id,
       name: v(r,'Title') || '',
       active: v(r,'Active') !== false
-    })).filter(x => x.active);
+})).filter((x: ICrew) => x.active);
   }
 
   public async getJobs(): Promise<IJob[]> {
