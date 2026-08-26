@@ -1,0 +1,30 @@
+GROUND MAINTENANCE HUB - WHAT YOU DO
+====================================
+
+You do NOT need Node on your computer.
+
+1. Go to https://github.com and sign in / create an account.
+2. Click New repository.
+3. Name it: grounds-maintenance-hub
+4. Choose PRIVATE.
+5. Click Create repository.
+6. In the empty repository choose "uploading an existing file".
+7. Unzip GM_Hub_GitHub_Ready.zip on your PC.
+8. Drag ALL files and folders from inside the unzipped folder into GitHub.
+   Important: upload the CONTENTS, not the outer folder itself.
+9. Commit the files.
+10. Click the Actions tab.
+11. If GitHub asks you to enable Actions, enable them.
+12. Choose "Build SPFx Package" on the left.
+13. Click "Run workflow" > "Run workflow".
+14. Wait for the workflow to finish with a GREEN tick.
+15. Open that completed workflow run.
+16. Scroll to Artifacts.
+17. Download "grounds-maintenance-hub-sppkg".
+18. Unzip that downloaded artifact.
+19. The file IT needs is: grounds-maintenance-hub.sppkg
+
+Send IT / SharePoint admin this message:
+"Please upload and deploy the attached SPFx package to the tenant App Catalog and make it available to the Waverley SharePoint site: https://wavind.sharepoint.com/sites/Waverley"
+
+If the GitHub build goes RED, take a screenshot of the error and send it back to ChatGPT. Do not start changing files randomly.
